@@ -1,0 +1,105 @@
+.apps-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    color: white;
+}
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+    color: white;
+}
+
+.apps-button {
+    height: 45px;
+    border: 0;
+    width: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+
+
+.deposit-button {
+    background-image: linear-gradient(to right,
+            #ff8177 0%,
+            #ff867a 0%,
+            #ff8c7f 21%,
+            #f99185 52%,
+            #cf556c 78%,
+            #b12a5b 100%);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+}
+
+.withdraw-button {
+    background: -webkit-linear-gradient(left, #a200d6, #ff6fdf);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+}
+
+.gacha-button {
+    background: -webkit-linear-gradient(left, #FFB9D6, #00B9D6);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+}
+
+
+
+.footer-text {
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* KeyFrames */
+@-webkit-keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@-moz-keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
