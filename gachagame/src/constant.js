@@ -11,4 +11,5 @@ const transformOfferData = (offerData) => {
         tokenId: offerData.tokenId.toNumber()
     };
 };
-export { CONTRACT_ADDRESS, SEPOLIA_NETWORK, transformOfferData };
+const MORALIS_API_KEY = "zb4sYWpTvVBbIoMHiuoAh4ejbEJgtwoAcRqWwVbrnY1NSgMIg6GBWrCS89ATvBQE";
+export { CONTRACT_ADDRESS, SEPOLIA_NETWORK, transformOfferData, MORALIS_API_KEY };

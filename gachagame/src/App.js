@@ -116,7 +116,7 @@ const App = () => {
   }, [currentAccount]);
 
   useEffect(() => {
-    checkIfWalletIsConnected();
+    //checkIfWalletIsConnected();
   }, []);
 
   return (
