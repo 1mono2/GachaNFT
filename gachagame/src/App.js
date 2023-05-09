@@ -2,8 +2,8 @@ import twitterLogo from './Assets/twitter-logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import ethers from 'ethers';
-//import Moralis from 'moralis';
-import { CONTRACT_ADDRESS, SEPOLIA_NETWORK, transformCharacterData } from './constant';
+import Moralis from 'moralis';
+import { SEPOLIA_NETWORK, MORALIS_API_KEY } from './constant';
 import gachaNFT from './Utils/GachaNFT.json';
 import Apps from './Components/Apps';
 
@@ -14,6 +14,11 @@ const App = () => {
   // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState(null);
 
+  const initializeMoralis = async () => {
+    await Moralis.start({
+      apiKey: MORALIS_API_KEY,
+    });
+  }
 
   // ユーザーがSepolia Network に接続されているか確認します。
   // '11155111' は Sepolia のネットワークコードです。
@@ -64,7 +69,7 @@ const App = () => {
     if (!currentAccount) {
       return (
         <div className="connect-wallet-container">
-          <img src="https://1.bp.blogspot.com/-sZbaFXJ4y0A/UnyGKAJjwbI/AAAAAAAAacE/RYDWRq73Hsc/s400/gachagacha.png" alt="LUFFY" />
+          <img src="https://1.bp.blogspot.com/-sZbaFXJ4y0A/UnyGKAJjwbI/AAAAAAAAacE/RYDWRq73Hsc/s400/gachagacha.png" alt="Gacha" />
           <button
             className="cta-button connect-wallet-button"
             onClick={connectWalletAction}
@@ -117,6 +122,7 @@ const App = () => {
 
   useEffect(() => {
     //checkIfWalletIsConnected();
+    initializeMoralis();
   }, []);
 
   return (
@@ -135,7 +141,7 @@ const App = () => {
             className="footer-text"
             href={TWITTER_LINK}
             target="_blank"
-            rel="noreferrer"
+            rel="no_referrer"
           >{`built with @${TWITTER_HANDLE}`}</a>
         </div>
       </div>

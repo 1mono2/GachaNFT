@@ -1,0 +1,19 @@
+.gacha-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 24px 48px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 16px 16px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.gacha-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}

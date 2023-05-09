@@ -9,3 +9,42 @@
     height: auto;
     object-fit: cover;
 }
+
+.nft-container {
+    cursor: pointer;
+    position: relative;
+}
+
+.selected img {
+    border: 3px solid #f00;
+}
+
+.selected::after img {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.deposit-btn {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 24px 48px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 30px 20px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.deposit-btn:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
