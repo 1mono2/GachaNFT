@@ -4,11 +4,17 @@ import Moralis from "moralis";
 import { CONTRACT_ADDRESS, SEPOLIA_NETWORK, MORALIS_API_KEY } from "../../constant";
 import gachaNFT from "../../Utils/GachaNFT.json";
 import "./Deposit.css";
+import NO_IMAGE_URL from "../../Utils/no_image.jpg";
 
 const Deposit = () => {
 
     const [currentAccount, setCurrentAccount] = useState(null);
     const [ownedNFT, setOwnedNFT] = useState([]);
+
+
+    const handleError = (e) => {
+        e.target.src = NO_IMAGE_URL; // ここに代替イメージのURLを指定
+    };
 
     useEffect(() => {
         async function getAddress() {
@@ -44,7 +50,6 @@ const Deposit = () => {
                     apiKey: MORALIS_API_KEY,
                 });
 
-                console.log("mol" + currentAccount);
                 const response = await Moralis.EvmApi.nft.getWalletNFTs({
                     "chain": SEPOLIA_NETWORK,
                     "format": "decimal",
@@ -53,7 +58,10 @@ const Deposit = () => {
                     "address": currentAccount,
                 });
 
-                console.log(response.toJSON().result[0].token_address);
+                let results = response.toJSON().result; // toJSON is Morails' method
+                setOwnedNFT(results);
+                console.log(results);
+
             } catch (e) {
                 console.error(e);
             }
@@ -70,6 +78,21 @@ const Deposit = () => {
         <div className="container">
             <div className="header-container">
                 <p className="header gradient-text">Deposit to the contract</p>
+                {ownedNFT.length > 0 ? (
+                    <div className="image-grid">
+                        {ownedNFT.map((result) => {
+                            let metadata = JSON.parse(result.metadata);
+                            return (
+                                <div key={metadata.name}>
+                                    <img src={metadata.image} alt={metadata.name} onError={handleError} />
+                                    <p className="text">{metadata.name}</p>
+                                </div>
+                            );
+                        })}
+                    </div>
+                ) : (
+                    <p>Your owned NFT not found</p>
+                )}
             </div>
         </div>
 
