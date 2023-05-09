@@ -14,6 +14,12 @@ const App = () => {
   // ユーザーのウォレットアドレスを格納するために使用する状態変数を定義します。
   const [currentAccount, setCurrentAccount] = useState(null);
 
+  const toHex = (numberSting) => {
+    const number = parseInt(numberSting, 10);
+    return "0x" + number.toString(16);
+  }
+
+
   const initializeMoralis = async () => {
     await Moralis.start({
       apiKey: MORALIS_API_KEY,
@@ -25,12 +31,50 @@ const App = () => {
   const checkNetwork = async () => {
     try {
       if (window.ethereum.networkVersion !== SEPOLIA_NETWORK) {
-        alert('このゲームはSepolia Networkに接続されている必要があります。');
+        console.log(toHex(SEPOLIA_NETWORK));
+        switchToSepolia();
       } else {
         console.log('Sepolia Networkに接続されています。');
       }
     } catch (error) {
       console.log(error);
+    }
+  }
+
+  async function addSepoliaChain() {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_addEthereumChain',
+        params: [{
+          chainId: toHex(SEPOLIA_NETWORK),
+          chainName: 'Sepolia',
+          nativeCurrency: {
+            name: 'ETH',
+            symbol: 'ETH',
+            decimals: 18,
+          },
+          rpcUrls: ['https://eth-sepolia.g.alchemy.com/v2/demo'],
+          blockExplorerUrls: ['https://sepolia.etherscan.io'],
+        }],
+      });
+    } catch (error) {
+      console.error('Error adding Sepolia chain:', error);
+    }
+  }
+
+  async function switchToSepolia() {
+    try {
+      await window.ethereum.request({
+        method: 'wallet_switchEthereumChain',
+        params: [{ chainId: toHex(SEPOLIA_NETWORK) }],
+      });
+    } catch (switchError) {
+      // This error code indicates that the chain has not been added to MetaMask.
+      if (switchError.code === 4902) {
+        addSepoliaChain();
+      } else {
+        console.log(switchError);
+      }
     }
   }
 
