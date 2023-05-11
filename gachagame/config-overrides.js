@@ -21,6 +21,7 @@ module.exports = override(
             net: false,
             tls: false,
             fs: false,
+            assert: require.resolve("assert/"),
         },
     }),
 
