@@ -1,10 +1,8 @@
 import twitterLogo from './Assets/twitter-logo.svg';
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import ethers from 'ethers';
 import Moralis from 'moralis';
 import { SEPOLIA_NETWORK, MORALIS_API_KEY } from './constant';
-import gachaNFT from './Utils/GachaNFT.json';
 import Apps from './Components/Apps';
 
 const TWITTER_HANDLE = '1MoNo2Prod';

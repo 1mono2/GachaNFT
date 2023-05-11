@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
 import Moralis from "moralis";
 import { CONTRACT_ADDRESS, transformOfferData, SEPOLIA_NETWORK } from "../../constant";
 import gachaNFT from "../../Utils/GachaNFT.json";
 import './Withdraw.css'
 import NO_IMAGE_URL from "../../Utils/no_image.jpg";
+const { ethers } = require("ethers")
 
 const Withdraw = () => {
     const [NFTs, setNFTs] = useState([]);
@@ -19,7 +19,7 @@ const Withdraw = () => {
     // Get NFT by owner from the contract
     useEffect(() => {
         const getOffersByOwner = async () => {
-            const provider = new ethers.providers.Web3Provider(window.ethereum);
+            const provider = new ethers.providers.Web3Provider(window.ethereum)
             const signer = provider.getSigner();
             const contract = new ethers.Contract(CONTRACT_ADDRESS, gachaNFT.abi, signer);
             const userAddress = await signer.getAddress();
@@ -69,7 +69,7 @@ const Withdraw = () => {
 
     const handleWithdraw = async () => {
         if (selectedNFT === null) return;
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const provider = new ethers.providers.Web3Provider(window.ethereum)
         const signer = provider.getSigner();
         const contract = new ethers.Contract(CONTRACT_ADDRESS, gachaNFT.abi, signer);
         await contract.withdraw(selectedNFT.nftContract, selectedNFT.tokenId);

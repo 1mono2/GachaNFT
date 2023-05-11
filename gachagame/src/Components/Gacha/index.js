@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { ethers } from "ethers";
 import Moralis from "moralis";
 import { CONTRACT_ADDRESS, transformOfferData, SEPOLIA_NETWORK } from "../../constant";
 import gachaNFT from "../../Utils/GachaNFT.json";
 import './Gacha.css'
 import NO_IMAGE_URL from "../../Utils/no_image.jpg";
+const { ethers } = require("ethers")
 
 const Gacha = () => {
     const [offerId, setOfferId] = useState([]);

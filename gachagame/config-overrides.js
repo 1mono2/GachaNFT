@@ -1,51 +1,37 @@
-const { override, addWebpackAlias } = require("customize-cra");
+const {
+    addWebpackAlias,
+    addWebpackResolve,
+    addWebpackPlugin,
+    override,
+} = require("customize-cra");
+const path = require("path");
+const webpack = require("webpack");
 
 module.exports = override(
+    addWebpackResolve({
+        fallback: {
+            stream: require.resolve("stream-browserify"),
+            zlib: require.resolve("browserify-zlib"),
+            crypto: require.resolve("crypto-browserify"),
+            http: require.resolve("stream-http"),
+            https: require.resolve("https-browserify"),
+            url: require.resolve("url"),
+            path: require.resolve("path-browserify"),
+            os: require.resolve("os-browserify/browser"),
+            net: false,
+            tls: false,
+            fs: false,
+        },
+    }),
+
     addWebpackAlias({
-        stream: require.resolve("stream-browserify"),
-    })
+        "@": path.resolve(__dirname, "src"),
+    }),
+
+    addWebpackPlugin(
+        new webpack.ProvidePlugin({
+            Buffer: ["buffer", "Buffer"],
+        })
+    )
+
 );
-
-// webpack.config.js
-const path = require('path');
-
-module.exports = {
-    entry: './src/index.js',
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js',
-    },
-    module: {
-        rules: [
-            // JavaScript ファイルの処理
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                },
-            },
-            // 画像ファイルの処理
-            {
-                test: /\.(png|jpe?g|gif|svg)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'static/media/[name].[hash:8].[ext]',
-                        },
-                    },
-                ],
-            },
-        ],
-    },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-    },
-};
-
-
-
-
-
-
