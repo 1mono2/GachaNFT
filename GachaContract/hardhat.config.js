@@ -1,5 +1,6 @@
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
+require("@nomiclabs/hardhat-etherscan")
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -13,5 +14,8 @@ module.exports = {
       url: process.env.ALCHEMY_API_URL_SEPOLIA,
       accounts: [process.env.PRIVATE_KEY],
     },
+  },
+  etherscan: {
+    apiKey: process.env.ETHERSCAN_API_KEY
   },
 };

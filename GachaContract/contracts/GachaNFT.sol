@@ -3,13 +3,13 @@ pragma solidity ^0.8.9;
 
 //OpenZeppelinが提供するヘルパー機能をインポートします。
 //import "../node_modules/@openzeppelin/contracts/utils/Counters.sol";
-//import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
+import "../node_modules/@openzeppelin/contracts/utils/Strings.sol";
 
-import "../node_modules/@openzeppelin/contracts/token/ERC721/IERC721.sol";
-import "../node_modules/@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
-import "../node_modules/@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
+import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/utils/ERC721Holder.sol";
+import "@openzeppelin/contracts/utils/structs/EnumerableSet.sol";
 
-import "../node_modules/hardhat/console.sol";
+import "hardhat/console.sol";
 
 contract GachaNFT is ERC721Holder {
     using EnumerableSet for EnumerableSet.UintSet;
